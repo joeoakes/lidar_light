@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="Lazer_Eyes.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.BackgroundColor="White">
+
+    <Shell.TitleView>
+        <Grid Margin="0,0,0,20" ColumnDefinitions="Auto, *">
+            <HorizontalStackLayout Grid.Column="0" HorizontalOptions="Start">
+                <Image
+                    Aspect="AspectFit"
+                    SemanticProperties.Description="Welcome image!"
+                    Source="ly_logo.png"
+                    WidthRequest="120" />
+
+            </HorizontalStackLayout>
+
+
+            <HorizontalStackLayout Grid.Column="1" HorizontalOptions="End">
+                <ImageButton
+                    x:Name="HelpButton"
+                    Aspect="AspectFit"
+                    Clicked="Help"
+                    HeightRequest="30"
+                    SemanticProperties.Description="Settings and More"
+                    Source="menu.png"
+                    WidthRequest="60"
+                    />
+            </HorizontalStackLayout>
+        </Grid>
+    </Shell.TitleView>
+
+    <Grid
+        BackgroundColor="#fff"
+        ColumnDefinitions="*, *, *"
+        RowDefinitions="*">
+
+        <VerticalStackLayout
+            HorizontalOptions="FillAndExpand">
+
+            <Label
+                x:Name="statusText"
+                TextColor="Black"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"/>
+            <Label
+                x:Name="lightText"
+                TextColor="Black"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"/>
+
+        </VerticalStackLayout>
+    </Grid>
+
+
+</ContentPage>

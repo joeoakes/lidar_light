@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Lazer_Eyes.AlertNotifications"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Notifications">
+
+    <ScrollView
+        Orientation="Vertical"
+        VerticalOptions="FillAndExpand"
+        VerticalScrollBarVisibility="Always">
+        <Grid
+            Padding="15"
+            ColumnDefinitions="*"
+            RowDefinitions="75, *"
+            RowSpacing="70">
+            <Border>
+                <Grid Grid.Row="0">
+                    <Grid Padding="15" ColumnDefinitions="*, *">
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Text="Default"
+                            VerticalOptions="Center" />
+
+                        <Switch
+                            x:Name="DefaultSwitch"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Toggled="DefaultAlertNotificationsToggled"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </Grid>
+            </Border>
+            <Grid
+                Grid.Row="1"
+                RowDefinitions="Auto, Auto, 75"
+                RowSpacing="5">
+
+                <Border Grid.Row="0">
+                    <Grid Padding="15" RowDefinitions="Auto, Auto">
+                        <Grid Grid.Row="0" ColumnDefinitions="*,*">
+                            <HorizontalStackLayout Grid.Column="0">
+                                <Image
+                                    Aspect="AspectFit"
+                                    HeightRequest="20"
+                                    Source="volume_high.png"
+                                    WidthRequest="30" />
+                                <Label Text="Auditory" VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                            <Switch
+                                x:Name="AuditoryNotificationsSwitch"
+                                Grid.Column="1"
+                                HorizontalOptions="End"
+                                Toggled="AuditorySwitchToggled"
+                                VerticalOptions="Center" />
+                        </Grid>
+
+                        <Grid
+                            Grid.Row="1"
+                            ColumnDefinitions="*, *"
+                            RowDefinitions="75, 75, 75">
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="Volume"
+                                VerticalOptions="Center" />
+                            <Slider
+                                x:Name="AuditoryAlertsVolumeSlider"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Maximum="100"
+                                Minimum="0"
+                                ValueChanged="AuditoryAlertsVolumeSliderChanged"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Text="Warnings"
+                                VerticalOptions="Center" />
+                            <Switch
+                                x:Name="AuditoryNotificationsWarnignsSwitch"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                HorizontalOptions="End"
+                                Toggled="AuditoryNotificationsWarningsToggled"
+                                VerticalOptions="Center" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Text="Danger"
+                                VerticalOptions="Center" />
+                            <Switch
+                                x:Name="AuditoryNotificationsDangerSwitch"
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                HorizontalOptions="End"
+                                Toggled="AuditoryNotificationsDangerToggled"
+                                VerticalOptions="Center" />
+                            <Grid.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding Source={x:Reference AuditoryNotificationsSwitch}, Path=IsToggled}"
+                                    TargetType="Grid"
+                                    Value="False">
+                                    <Setter Property="IsVisible" Value="False" />
+                                </DataTrigger>
+                            </Grid.Triggers>
+                        </Grid>
+                    </Grid>
+                </Border>
+                <Border Grid.Row="1">
+                    <Grid RowDefinitions="Auto, Auto">
+                        <Grid
+                            Grid.Row="0"
+                            Padding="15"
+                            ColumnDefinitions="*, *">
+                            <HorizontalStackLayout Grid.Column="0">
+                                <Image
+                                    Aspect="AspectFit"
+                                    HeightRequest="20"
+                                    Source="vibrate_light.png"
+                                    WidthRequest="30" />
+                                <Label
+                                Grid.Column="0"
+                                Text="Vibration"
+                                VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                            <Switch
+                                x:Name="TactileNotificationsSwitch"
+                                Grid.Column="1"
+                                HorizontalOptions="End"
+                                Toggled="TactileSwitchToggled"
+                                VerticalOptions="Center" />
+                        </Grid>
+                        <Grid
+                            Grid.Row="1"
+                            Padding="15"
+                            RowDefinitions="75,Auto,75,Auto">
+                            <Grid Grid.Row="0" ColumnDefinitions="*,*">
+                                <Label
+                                    Grid.Column="0"
+                                    Text="Warnings"
+                                    VerticalOptions="Center" />
+                                <Switch
+                                    x:Name="TactileNotificationsWarnignsSwitch"
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    Toggled="TactileWarningsToggled"
+                                    VerticalOptions="Center" />
+                            </Grid>
+                            <Grid Grid.Row="1" ColumnDefinitions="*,*">
+                                <Label
+                                    Grid.Column="0"
+                                    Text="Intensity"
+                                    VerticalOptions="Center" />
+                                <Slider
+                                    x:Name="TactileWarningIntensitySlider"
+                                    Grid.Column="1"
+                                    VerticalOptions="Center"
+                                    Maximum="100"
+                                    Minimum="0"
+                                    ValueChanged="TactileWarningIntensitySliderChanged"/>
+                                <Grid.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Source={x:Reference TactileNotificationsWarnignsSwitch}, Path=IsToggled}"
+                                        TargetType="Grid"
+                                        Value="False">
+                                        <Setter Property="IsVisible" Value="False" />
+                                    </DataTrigger>
+                                </Grid.Triggers>
+                            </Grid>
+                            <Grid Grid.Row="2" ColumnDefinitions="*,*">
+                                <Label
+                                    Grid.Column="0"
+                                    Text="Danger"
+                                    VerticalOptions="Center" />
+                                <Switch
+                                    x:Name="TactileNotificationsDangerSwitch"
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    Toggled="TactileDangerToggled"
+                                    VerticalOptions="Center" />
+                            </Grid>
+                            <Grid Grid.Row="3" ColumnDefinitions="*,*" >
+                                <Label Grid.Column="0"
+                                    HorizontalOptions="Start"
+                                    Text="Intensity"
+                                    VerticalOptions="Center" />
+                                <Slider
+                                    x:Name="TactileDangerIntensitySlider"
+                                    Grid.Column="1"
+                                    VerticalOptions="Center"
+                                    Maximum="100"
+                                    Minimum="0"
+                                    ValueChanged="TactileDangerIntensitySliderChanged"/>
+                                <Grid.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Source={x:Reference TactileNotificationsDangerSwitch}, Path=IsToggled}"
+                                        TargetType="Grid"
+                                        Value="False">
+                                        <Setter Property="IsVisible" Value="False" />
+                                    </DataTrigger>
+                                </Grid.Triggers>
+                            </Grid>
+                            <Grid.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding Source={x:Reference TactileNotificationsSwitch}, Path=IsToggled}"
+                                    TargetType="Grid"
+                                    Value="False">
+                                    <Setter Property="IsVisible" Value="False" />
+                                </DataTrigger>
+                            </Grid.Triggers>
+                        </Grid>
+                    </Grid>
+                </Border>
+                <Border Grid.Row="2">
+                    <Grid Padding="15" ColumnDefinitions="*, *">
+                        <HorizontalStackLayout Grid.Column="0">
+                            <Image
+                                    Aspect="AspectFit"
+                                    HeightRequest="20"
+                                    Source="lightbulb.png"
+                                    WidthRequest="30" />
+                            <Label
+                            Grid.Column="0"
+                            Text="Low Light"
+                            VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <Switch
+                            x:Name="LowLightNotificationsSwitch"
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Toggled="LowLightNotificationsSwitchToggled"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+                <Grid.Triggers>
+                    <DataTrigger
+                        Binding="{Binding Source={x:Reference DefaultSwitch}, Path=IsToggled}"
+                        TargetType="Grid"
+                        Value="true">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Grid.Triggers>
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>
